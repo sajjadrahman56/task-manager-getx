@@ -14,7 +14,7 @@ class TaskItemCard extends StatefulWidget {
 
   final Task task;
   final VoidCallback onStatusChane;
-  final Function(bool) showProgress;
+  final Function(bool) showProgress ;
   @override
   State<TaskItemCard> createState() => _TaskItemCardState();
 }
@@ -156,6 +156,6 @@ class _TaskItemCardState extends State<TaskItemCard> {
               )
             ],
           );
-        });
+        },);
   }
 }

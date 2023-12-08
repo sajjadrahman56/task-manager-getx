@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:task_manager_101/data/model/user_model.dart';
 import 'package:task_manager_101/data/network_caller/network_response.dart';
@@ -25,6 +26,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final TextEditingController _passwordTEController = TextEditingController();
   final   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  AuthController authController =  Get.find<AuthController>();
+
   bool updateProfileInProgress = false;
 
   XFile? photo;
@@ -32,10 +35,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _emailTEController.text = AuthController.user?.email ?? " ";
-    _firstNameTEController.text = AuthController.user?.firstName ?? " ";
-    _lastNameTEController.text = AuthController.user?.lastName ?? " ";
-    _mobileTEController.text = AuthController.user?.mobile ?? " ";
+    _emailTEController.text = authController.user?.email ?? " ";
+    _firstNameTEController.text = authController.user?.firstName ?? " ";
+    _lastNameTEController.text = authController.user?.lastName ?? " ";
+    _mobileTEController.text = authController.user?.mobile ?? " ";
   }
 
   @override
@@ -187,11 +190,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
 
     if (response.isSuccess) {
-      AuthController.updateUserInformation(UserModel(email: _emailTEController.text.trim(),
+      Get.find<AuthController>().updateUserInformation(UserModel(email: _emailTEController.text.trim(),
       firstName: _firstNameTEController.text.trim(),
         lastName: _lastNameTEController.text.trim(),
         mobile: _mobileTEController.text.trim(),
-        photo: photoInBase64 ?? AuthController.user?.photo,
+        photo: photoInBase64 ??  Get.find<AuthController>().user?.photo,
       ));
       if (mounted) {
         showSnackBarMessage(context, 'Update profile Success');

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager_101/data/network_caller/network_response.dart';
 import 'package:task_manager_101/data/network_caller/network_caller.dart';
 import 'package:task_manager_101/ui/widget/body_background.dart';
@@ -6,6 +7,7 @@ import 'package:task_manager_101/ui/widget/profile_summary_card.dart';
 import 'package:task_manager_101/ui/widget/snack_message.dart';
 
 import '../../data/utility/utils.dart';
+import '../controller/new_task_controller.dart';
 
 class AddNewTask extends StatefulWidget {
   const AddNewTask({super.key});
@@ -110,6 +112,7 @@ class _AddNewTaskState extends State<AddNewTask> {
       if(response.isSuccess){
         _subjectTEController.clear();
         _descriptionTEController.clear();
+        Get.find<NewTaskController>().getNewTask();
         if(mounted){
           showSnackBarMessage(context, 'create new task ');
         }

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager_101/data/model/user_model.dart';
-import 'package:task_manager_101/data/network_caller/network_response.dart';
-import 'package:task_manager_101/data/network_caller/network_caller.dart';
-import 'package:task_manager_101/ui/controller/auth_controller.dart';
+import 'package:get/get.dart';
+import 'package:task_manager_101/ui/controller/login_controller.dart';
 import 'package:task_manager_101/ui/screen/forget_pass_screen.dart';
 import 'package:task_manager_101/ui/screen/main_buttom_nav_screen.dart';
 import 'package:task_manager_101/ui/screen/sign_up_screen.dart';
 import 'package:task_manager_101/ui/widget/body_background.dart';
 import 'package:task_manager_101/ui/widget/snack_message.dart';
 import '../../data/utility/regex.dart';
-import '../../data/utility/utils.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,8 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final LogInController _logInController = Get.find<LogInController>();
 
-  bool _loginProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -87,17 +85,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(
                     width: double.infinity,
-                    child: Visibility(
-                      visible: _loginProgress == false,
-                      replacement: const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      child: ElevatedButton(
-                        onPressed: (){
-                          login();
-                        },
-                        child: const Icon(Icons.arrow_circle_right_outlined),
-                      ),
+                    child:  GetBuilder<LogInController>(
+                      builder: (loginController) {
+                        return Visibility(
+                          visible: loginController.LogInProgress == false,
+                          replacement: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          child: ElevatedButton(
+                            onPressed: (){
+                              login();
+                            },
+                            child: const Icon(Icons.arrow_circle_right_outlined),
+                          ),
+                        );
+                      }
                     ),
                   ),
                   const SizedBox(
@@ -151,40 +153,17 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-    _loginProgress = true;
-    if (mounted) {
-      setState(() {});
-    }
-    NetworkResponse response = await NetworkCaller().postRequest(Urls.login,
-        body: {
-          "email": _emailController.text.trim(),
-          "password": _passwordController.text
-        },
-        isLogIn: true);
 
-    _loginProgress = false;
-    if (mounted) {
-      setState(() {});
-    }
-    if (response.isSuccess) {
-      await AuthController.saveUserInformation(response.jsonResponse['token'],
-          UserModel.fromJson(response.jsonResponse['data']));
+    final response = await _logInController.login(_emailController.text.trim(), _passwordController.text);
 
-     if(mounted){
-       Navigator.push(context,
-           MaterialPageRoute(builder: (context) => const MainBottomNavScreen()));
-     }
+    if (response) {
+     Get.offAll(const MainBottomNavScreen());
     } else {
-      if (response.statusCode == 401) {
-        if (mounted) {
 
-          showSnackBarMessage(context, "Please check email/password", true);
-        }
-      } else {
         if (mounted) {
-          showSnackBarMessage(context, "Log in failed , Try again");
+          showSnackBarMessage(context,_logInController.FailedMessage);
         }
-      }
+
     }
   }
 

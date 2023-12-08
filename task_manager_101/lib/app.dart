@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager_101/ui/controller/auth_controller.dart';
+import 'package:task_manager_101/ui/controller/login_controller.dart';
+import 'package:task_manager_101/ui/controller/progress_task_controller.dart';
 import 'package:task_manager_101/ui/screen/splash_screen.dart';
+import 'package:get/get.dart';
+
+import 'ui/controller/new_task_controller.dart';
 
 class TaskManagerApp extends StatelessWidget {
   const TaskManagerApp({super.key});
@@ -8,7 +14,7 @@ class TaskManagerApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       navigatorKey: navigationKey,
       home: SplashScreen(),
       theme: ThemeData(
@@ -36,6 +42,19 @@ class TaskManagerApp extends StatelessWidget {
         ),
       )
       ),
+      initialBinding: ControllerBinder(),
     );
   }
+}
+
+
+class ControllerBinder extends Bindings{
+  @override
+  void dependencies() {
+    Get.put(ProgressTaskController());
+    Get.put(AuthController());
+     Get.put(LogInController());
+     Get.put(NewTaskController());
+  }
+
 }
