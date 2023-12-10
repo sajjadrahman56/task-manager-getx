@@ -64,14 +64,24 @@ class NetworkCaller {
       log(response.headers.toString());
       log(response.statusCode.toString());
       log(response.body);
-
-      if (response.statusCode == 200) {
-        return NetworkResponse(
-          statusCode: response.statusCode,
-          isSuccess: true,
-          jsonResponse: jsonDecode(response.body),
-        );
-      }else if (response.statusCode == 401) {
+      final jsonResponse = jsonDecode(response.body);
+      if (response.statusCode == 200  ) {
+        if (jsonResponse['status'] == 'success') {
+          return NetworkResponse(
+            statusCode: response.statusCode,
+            isSuccess: true,
+            jsonResponse: jsonResponse,
+          );
+        } else {
+          log('pin bul ami aisi');
+          return NetworkResponse(
+            statusCode: response.statusCode,
+            isSuccess: false,
+            jsonResponse: jsonResponse,
+          );
+        }
+      }
+      else if (response.statusCode == 401) {
         backToLogin();
         return NetworkResponse(
           statusCode: response.statusCode,

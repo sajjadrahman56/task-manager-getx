@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager_101/ui/controller/auth_controller.dart';
 import 'package:task_manager_101/ui/screen/login_screen.dart';
-
 import '../screen/edit_profile_screen.dart';
+
 class ProfileSummaryCard extends StatefulWidget {
   const ProfileSummaryCard({
     super.key,this.enableOnTap=true
@@ -22,24 +21,34 @@ class _ProfileSummaryCardState extends State<ProfileSummaryCard> {
   @override
   Widget build(BuildContext context) {
 
-    return   GetBuilder<AuthController>(
+    return GetBuilder<AuthController>(
       builder: (authController) {
-        Uint8List imageBytes = const  Base64Decoder().convert(authController.user?.photo ?? ' ');
+
+        Uint8List imageBytes = Uint8List(0);
+
+        try {
+            imageBytes = authController.user?.photo != null
+              ? Base64Decoder().convert(authController.user!.photo!)
+              : Uint8List(0);
+        } catch (e) {
+
+          const Icon(Icons.person);
+
+        }
+
         return ListTile(
           onTap: (){
            if(widget.enableOnTap)
            {
-             Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const EditProfileScreen()));
+             Get.to(const EditProfileScreen());
            }
           },
           leading:   CircleAvatar(
             child: authController.user?.photo == null ? const Icon(Icons.person) : ClipRRect(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(20),
                 child:Image.memory(imageBytes,
                 fit: BoxFit.cover,
                 )),
-
           ),
           title: Text(
             fullName(authController),

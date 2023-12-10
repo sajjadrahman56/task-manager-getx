@@ -108,12 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ForgetPassScreen(),
-                          ),
-                        );
+                        Get.to(const ForgetPassScreen());
                       },
                       child: const Text(
                         'Forgot Password?',
@@ -127,12 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Text("Don't have an account?"),
                       TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignUpScreen(),
-                              ),
-                            );
+                            Get.to(  SignUpScreen());
                           },
                           child: const Text(
                             'Sign Up',
