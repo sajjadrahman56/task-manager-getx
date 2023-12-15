@@ -1,16 +1,32 @@
-# task_manager_101
+# Task Manager GetX
 
-A new Flutter project.
+This is a Flutter project for a task manager app utilizing the GetX state management library.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
+- Make sure you have Flutter installed. If not, you can get it from [here](https://flutter.dev/docs/get-started/install).
 
-A few resources to get you started if this is your first Flutter project:
+### Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone this repository.
+    ```bash
+    git clone https://github.com/sajjadrahman56/task_manager_getx.git
+    ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. Navigate to the project directory.
+    ```bash
+    cd task_manager_getx
+    ```
+
+3. Get the dependencies.
+    ```bash
+    flutter pub get
+    ```
+
+### Usage
+
+Run the app on a simulator or connected device.
+```bash
+flutter run
+
