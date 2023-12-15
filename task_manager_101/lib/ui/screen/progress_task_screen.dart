@@ -7,14 +7,11 @@ import '../controller/progress_task_controller.dart';
 
 class ProgressTasksScreen extends StatefulWidget {
   const ProgressTasksScreen({super.key});
-
   @override
   State<ProgressTasksScreen> createState() => _ProgressTasksScreenState();
 }
 
 class _ProgressTasksScreenState extends State<ProgressTasksScreen> {
-
-  bool _getProgressTaskInProgress = false;
   TaskCountSummaryListModel taksCountSummaryListModel =
   TaskCountSummaryListModel();
 
@@ -23,7 +20,6 @@ class _ProgressTasksScreenState extends State<ProgressTasksScreen> {
   {
     super.initState();
     Get.find<ProgressTaskController>().getProgressTask();
-    //getProgressTask();
   }
 
   @override

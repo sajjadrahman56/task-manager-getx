@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_101/ui/controller/auth_controller.dart';
 import 'package:task_manager_101/ui/controller/cancel_task_controller.dart';
+import 'package:task_manager_101/ui/controller/forget_pass_controller.dart';
 import 'package:task_manager_101/ui/controller/login_controller.dart';
 import 'package:task_manager_101/ui/controller/pin_verification_controller.dart';
 import 'package:task_manager_101/ui/controller/progress_task_controller.dart';
@@ -64,8 +65,8 @@ class ControllerBinder extends Bindings{
      Get.put(CancelTaskController());
      Get.put(PinVerificationController());
      Get.put(ResetPasswordController());
-
     Get.put(SignUpController());
+    Get.put(ForgetPassController());
 
 
   }

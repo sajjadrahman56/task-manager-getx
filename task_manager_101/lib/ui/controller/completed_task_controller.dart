@@ -6,7 +6,7 @@ import '../../data/utility/utils.dart';
 
 
 class CompletedTaskController extends GetxController {
-  RxBool _getCompletedTaskInProgress = false.obs;
+  final RxBool _getCompletedTaskInProgress = false.obs;
   TaskListModel _taskListModel = TaskListModel();
 
   bool get getCompletedTaskInProgress => _getCompletedTaskInProgress.value;

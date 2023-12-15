@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-
-import '../../data/model/task_count__summary_list_model.dart';
 import '../../data/model/task_list_model.dart';
 import '../../data/network_caller/network_caller.dart';
 import '../../data/network_caller/network_response.dart';
@@ -8,7 +6,7 @@ import '../../data/utility/utils.dart';
 
 
 class NewTaskController extends GetxController{
-  RxBool _getNewTaskInProgress =  false.obs;
+  final RxBool _getNewTaskInProgress =  false.obs;
 
   TaskListModel _taskListModel = TaskListModel();
 

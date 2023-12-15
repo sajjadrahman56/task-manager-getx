@@ -4,9 +4,8 @@ import '../../data/network_caller/network_caller.dart';
 import '../../data/network_caller/network_response.dart';
 import '../../data/utility/utils.dart';
 
-
 class ProgressTaskController extends GetxController {
-  RxBool _getProgressTaskInProgress = false.obs;
+  final RxBool _getProgressTaskInProgress = false.obs;
   TaskListModel _taskListModel = TaskListModel();
 
   bool get getProgressTaskInProgress => _getProgressTaskInProgress.value;

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:task_manager_101/ui/widget/profile_summary_card.dart';
 import 'package:task_manager_101/ui/widget/task_item_card.dart';
 import '../../data/model/task_count__summary_list_model.dart';
-import '../../data/model/task_list_model.dart';
 import '../controller/completed_task_controller.dart';
 
 class CompletedTasksScreen extends StatefulWidget {

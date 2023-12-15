@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:task_manager_101/app.dart';
@@ -73,7 +72,7 @@ class NetworkCaller {
             jsonResponse: jsonResponse,
           );
         } else {
-          log('pin bul ami aisi');
+          log('pin is wrong');
           return NetworkResponse(
             statusCode: response.statusCode,
             isSuccess: false,
@@ -107,7 +106,7 @@ class NetworkCaller {
   Future<void> backToLogin() async{
     await AuthController.claerSaveCheceData();
     Navigator.pushAndRemoveUntil(TaskManagerApp.navigationKey.currentContext!,
-        MaterialPageRoute(builder: (context)=>LoginScreen()), (route) => false);
+        MaterialPageRoute(builder: (context)=>const LoginScreen()), (route) => false);
   }
 
 

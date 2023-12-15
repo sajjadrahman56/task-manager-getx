@@ -4,7 +4,6 @@ import '../../data/network_caller/network_caller.dart';
 import '../../data/network_caller/network_response.dart';
 import '../../data/utility/utils.dart';
 
-
 class SignUpController extends GetxController {
   bool _signUpInProgress = false;
   String _failedMessage = '';

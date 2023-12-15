@@ -11,8 +11,8 @@ class LogInController extends GetxController{
   bool _loginProgress = false;
   String _failedMessage = '';
 
-  bool get LogInProgress => _loginProgress;
-  String get FailedMessage => _failedMessage;
+  bool get logInProgress => _loginProgress;
+  String get failedMessage => _failedMessage;
 
   Future<bool> login(String email , String password) async {
 

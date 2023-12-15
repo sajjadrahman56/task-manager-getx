@@ -10,7 +10,6 @@ class Urls{
   static String pinVerification(String email,String code) => '$_baseUrl/RecoverVerifyOTP/$email/$code';
 
   static const String createNewTask = '$_baseUrl/createTask';
-
   static String getNewTask = '$_baseUrl/listTaskByStatus/${TaskStatus.New.name}';
   static String getProgressTask = '$_baseUrl/listTaskByStatus/${TaskStatus.Progress.name}';
   static String getCompletedTask = '$_baseUrl/listTaskByStatus/${TaskStatus.Completed.name}';

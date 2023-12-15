@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child:  GetBuilder<LogInController>(
                       builder: (loginController) {
                         return Visibility(
-                          visible: loginController.LogInProgress == false,
+                          visible: loginController.logInProgress == false,
                           replacement: const Center(
                             child: CircularProgressIndicator(),
                           ),
@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        Get.to(const ForgetPassScreen());
+                        Get.to(  ForgetPassScreen());
                       },
                       child: const Text(
                         'Forgot Password?',
@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
 
         if (mounted) {
-          showSnackBarMessage(context,_logInController.FailedMessage);
+          showSnackBarMessage(context,_logInController.failedMessage);
         }
 
     }

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/network_caller/network_response.dart';
@@ -7,7 +5,6 @@ import '../../data/network_caller/network_caller.dart';
 import '../../data/utility/utils.dart';
 import '../screen/reset_screen.dart';
 import '../widget/snack_message.dart';
-import 'context_controller.dart';
 
 class PinVerificationController extends GetxController {
   RxBool loginProgress = false.obs;

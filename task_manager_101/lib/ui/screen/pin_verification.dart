@@ -2,30 +2,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager_101/ui/screen/login_screen.dart';
-
-import 'package:task_manager_101/ui/screen/reset_screen.dart';
-
 import 'package:task_manager_101/ui/widget/body_background.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-
-import '../../data/network_caller/network_response.dart';
-import '../../data/network_caller/network_caller.dart';
-import '../../data/utility/utils.dart';
 import '../controller/context_controller.dart';
 import '../controller/pin_verification_controller.dart';
-import '../widget/snack_message.dart';
 
 class PinVerificationScreen extends StatefulWidget {
-  const PinVerificationScreen({super.key, required this.eamilId});
-  final String eamilId;
+  const PinVerificationScreen({super.key, required this.emailId});
+  final String emailId;
   @override
   State<PinVerificationScreen> createState() => _PinVerificationScreenState();
 }
 
 class _PinVerificationScreenState extends State<PinVerificationScreen> {
-  bool _loginProgress = false;
   String enteredPin = '';
-
   @override
   void initState()
   {
@@ -103,7 +93,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                             ),
                             child: ElevatedButton(
                               onPressed: () {
-                                pinVerificationController.pinVerification(widget.eamilId, enteredPin);
+                                pinVerificationController.pinVerification(widget.emailId, enteredPin);
                               },
                               child: const Text('Verify'),
                             ),
@@ -137,44 +127,4 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
           )),
     );
   }
-
-
-  // Future<void> pinVerification(String email, String otpCode) async {
-  //   setState(() {
-  //     _loginProgress = true; // Start the progress indicator
-  //   });
-  //
-  //   NetworkResponse response = await NetworkCaller().getRequest(
-  //     Urls.pinVerification(widget.eamilId, enteredPin),
-  //   );
-  //
-  //   // Update state and UI after network call
-  //   setState(() {
-  //     _loginProgress = false; // Stop the progress indicator
-  //   });
-  //
-  //   if (response.isSuccess) {
-  //     if (response.statusCode == 200) {
-  //         if (mounted) {
-  //           Navigator.push(
-  //             context,
-  //             MaterialPageRoute(
-  //               builder: (context) =>
-  //                   ResetPasswordScreen(emailId: email, otp: otpCode),
-  //             ),
-  //           );
-  //         }
-  //     } else {
-  //       if (response.statusCode == 401) {
-  //         if (mounted) showSnackBarMessage(context, "Enter Six Digit Pin");
-  //       } else {
-  //         if (mounted) showSnackBarMessage(context, "Email or Pin is wrong");
-  //       }
-  //     }
-  //   }
-  //   else
-  //     {
-  //       if (mounted) showSnackBarMessage(context, "Pin is wrong,, Double Cheke",true);
-  //     }
-  // }
 }

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_101/data/network_caller/network_caller.dart';
-
 import '../../data/model/task.dart';
 import '../../data/network_caller/network_response.dart';
 import '../../data/utility/utils.dart';
 
-// ignore: constant_identifier_names
 enum TaskStatus { New, Progress, Completed, Cancelled }
 
 class TaskItemCard extends StatefulWidget {

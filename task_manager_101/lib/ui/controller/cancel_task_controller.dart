@@ -5,7 +5,7 @@ import '../../data/network_caller/network_response.dart';
 import '../../data/utility/utils.dart';
 
 class CancelTaskController extends GetxController {
-  RxBool _getCancelledTaskInProgress = false.obs;
+  final RxBool _getCancelledTaskInProgress = false.obs;
   TaskListModel _taskListModel = TaskListModel();
 
   bool get getCancelledTaskInProgress => _getCancelledTaskInProgress.value;

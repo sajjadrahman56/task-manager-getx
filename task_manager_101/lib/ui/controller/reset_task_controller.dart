@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager_101/ui/screen/login_screen.dart';
-
 import '../../data/network_caller/network_caller.dart';
 import '../../data/network_caller/network_response.dart';
 import '../../data/utility/utils.dart';
 import '../widget/snack_message.dart';
-// other necessary imports...
+
 
 class ResetPasswordController extends GetxController {
   final TextEditingController passwordController = TextEditingController();
